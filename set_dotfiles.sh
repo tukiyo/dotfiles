@@ -2,6 +2,8 @@
 
 BACKUPDIR=$HOME/backup/`date -I`/
 
+ADD_BASHRC=`grep .bashrc_mine $HOME/.bashrc`
+
 for file in .*
 do
     case $file in
@@ -28,3 +30,10 @@ do
 done
 
 mkdir -p ${HOME}/local/{bin,src,program,newsbeuter-saved-articles}
+
+if [ "$ADD_BASHRC" = "" ];then
+    echo "[info] source `pwd`/.bashrc_mine >> $HOME/.bashrc"
+    echo source '$HOME/.bashrc_mine' >> $HOME/.bashrc
+else
+    echo "[info] already wrote .bashrc_mine"
+fi

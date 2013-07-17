@@ -1,3 +1,14 @@
+alias gitcommitamend='git commit --amend -v'
+alias gitcommit='git commit -v'
+alias view='vim -R'
+if [ -e /etc/debian_version ]; then
+    alias aptcachesearch='apt-cache search'
+    alias aptgetinstall='apt-get install'
+    alias dpkgl='dpkg -l'
+    alias dpkgL='dpkg -L'
+    alias dpkgpurge='dpkg --purge'
+fi
+
 man() {
     env LESS_TERMCAP_mb=$(printf "\e[1;31m") \
 	LESS_TERMCAP_md=$(printf "\e[1;31m") \

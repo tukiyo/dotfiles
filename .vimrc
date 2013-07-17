@@ -53,3 +53,16 @@ map <leader>, :marks<cr>
 map <leader>. :e .<cr>
 
 let MyGrep_ExcludeReg = '[~#]$\|\.bak$\|\.o$\|\.obj$\|\.exe$\|[/\\]tags$\|^tags$'
+
+" QuickRun
+let g:quickrun_config = {
+\   "_" : {
+\       "hook/inu/enable" : 1,
+\       "hook/inu/wait" : 20,
+\       "outputter/buffer/split" : ":botright 8sp",
+\       "outputter/buffer/append" : 1,
+\       "runner/vimproc/updatetime" : 40,
+\       "runner" : "vimproc",
+\   }
+\}
+"map <leader>r :QuickRun<cr>

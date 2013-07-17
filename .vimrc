@@ -51,6 +51,8 @@ map <leader>f :vimgrep // %\|cwin<C-b><Right><Right><Right><Right><Right><Right>
 map <leader>q :q<cr>
 map <leader>, :marks<cr>
 map <leader>. :e .<cr>
+map <leader>S :mksession! ~/local/Session.vim<cr>
+map <leader>L :so ~/local/Session.vim<cr>
 
 let MyGrep_ExcludeReg = '[~#]$\|\.bak$\|\.o$\|\.obj$\|\.exe$\|[/\\]tags$\|^tags$'
 

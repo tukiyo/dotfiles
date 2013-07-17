@@ -50,5 +50,6 @@ map <leader>v :vimgrep // **/*.*\|cwin<C-b><Right><Right><Right><Right><Right><R
 map <leader>f :vimgrep // %\|cwin<C-b><Right><Right><Right><Right><Right><Right><Right><Right><Right>
 map <leader>q :q<cr>
 map <leader>, :marks<cr>
+map <leader>. :e .<cr>
 
 let MyGrep_ExcludeReg = '[~#]$\|\.bak$\|\.o$\|\.obj$\|\.exe$\|[/\\]tags$\|^tags$'

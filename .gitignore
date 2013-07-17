@@ -1,1 +1,9 @@
+.*.swp
 .vim/.netrwhist
+.newsbeuter/cache.db
+.newsbeuter/cache.db.lock
+.newsbeuter/history.cmdline
+.newsbeuter/history.search
+.w3m/config
+.w3m/history
+.w3m/cookie

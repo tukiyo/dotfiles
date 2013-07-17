@@ -26,3 +26,5 @@ do
     echo "[info] ln -s `pwd`/$file $HOME/$file"
     ln -s `pwd`/$file $HOME/$file
 done
+
+mkdir -p ${HOME}/local/{bin,src,program,newsbeuter-saved-articles}

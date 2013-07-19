@@ -19,3 +19,7 @@ man() {
 	LESS_TERMCAP_us=$(printf "\e[1;32m") \
 	man "$@"
 }
+
+memory_use_top20() {
+    ps alx  | awk '{printf ("%d\t%s\n", $8,$13)}' | sort -nr | head -20
+}

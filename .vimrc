@@ -34,7 +34,8 @@ set smarttab
 set incsearch
 set hlsearch
 
-autocmd FileType modula2 :set ft=markdown
+au FileType modula2 :set ft=markdown
+au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
 
 " map
 let mapleader = ","

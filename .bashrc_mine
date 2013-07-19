@@ -1,3 +1,4 @@
+PATH=$HOME/local/bin:$PATH
 alias gitcommitamend='git commit --amend -v'
 alias gitcommit='git commit -v'
 alias view='vim -R'

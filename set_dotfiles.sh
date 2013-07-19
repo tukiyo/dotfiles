@@ -1,9 +1,9 @@
 #!/bin/sh
 
 BACKUPDIR=$HOME/backup/`date -I`/
-
 ADD_BASHRC=`grep .bashrc_mine $HOME/.bashrc`
 
+#-------------------------------------------------------------------------------
 for file in .*
 do
     case $file in
@@ -30,14 +30,17 @@ do
     echo
 done
 
+#-------------------------------------------------------------------------------
 for name in bin src program newsbeuter-saved-articles; do mkdir -p ${HOME}/local/${name}; done
 
+#-------------------------------------------------------------------------------
 mkdir -p ${HOME}/.mutt/cache/
 if [ ! -e $HOME/.muttrc ];then
     echo "[exec] cp .muttrc $HOME/.muttrc"
     cp .muttrc $HOME/.muttrc
 fi
 
+#-------------------------------------------------------------------------------
 if [ "$ADD_BASHRC" = "" ];then
     echo "[info] source `pwd`/.bashrc_mine >> $HOME/.bashrc"
     echo source '$HOME/.bashrc_mine' >> $HOME/.bashrc
@@ -45,20 +48,26 @@ else
     echo "[skip] already wrote .bashrc_mine"
 fi
 
+#-------------------------------------------------------------------------------
 if [ -e /etc/debian_version ]; then
-    echo "[info] apt-get install"
-    sudo apt-get -q install \
-       ranger atool mediainfo highlight caca-utils w3m \
-       vim git tig nkf manpages-ja manpages-ja-dev
-       # transmission-cli poppler-utils 
-       # mutt-patched mailutils \
-       # openssh-server openssh-client
-    #sudo update-alternatives --all
+    if [ ! "`dpkg -l | grep y-ppa-manager`" ];then
+        echo "[info] apt-get install"
+        sudo apt-get -q install \
+           ranger atool mediainfo highlight caca-utils w3m \
+           vim git tig nkf manpages-ja manpages-ja-dev
+           # transmission-cli poppler-utils 
+           # mutt-patched mailutils \
+           # openssh-server openssh-client
+        #sudo update-alternatives --all
 
-    # y-ppa-manager
-    sudo apt-get install -q -y software-properties-common
-    sudo add-apt-repository -y ppa:webupd8team/y-ppa-manager && sudo apt-get -qq update
-    sudo apt-get install -q -y y-ppa-manager
-    #
+        # y-ppa-manager
+        sudo apt-get install -q -y software-properties-common
+        sudo add-apt-repository -y ppa:webupd8team/y-ppa-manager && sudo apt-get -qq update
+        sudo apt-get install -q -y y-ppa-manager
+    fi
     sudo apt-get clean
+fi
+#-------------------------------------------------------------------------------
+if [ ! -e $HOME/local/bin/colorizer.sed ]; then
+    cp -p local/bin/colorizer.sed $HOME/local/bin/
 fi

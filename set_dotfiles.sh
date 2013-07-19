@@ -30,7 +30,8 @@ do
     echo
 done
 
-mkdir -p ${HOME}/local/{bin,src,program,newsbeuter-saved-articles}
+for name in bin src program newsbeuter-saved-articles; do mkdir -p ${HOME}/local/${name}; done
+
 mkdir -p ${HOME}/.mutt/cache/
 if [ ! -e $HOME/.muttrc ];then
     echo "[exec] cp .muttrc $HOME/.muttrc"
@@ -46,8 +47,12 @@ fi
 
 if [ -e /etc/debian_version ]; then
     echo "[info] apt-get install"
-    sudo apt-get install \
-       ranger atool mediainfo transmission-cli poppler-utils highlight caca-utils w3m \
-       mutt-patched mailutils \
-       vim git tig openssh-server openssh-client
+    sudo apt-get -q install \
+       ranger atool mediainfo highlight caca-utils w3m \
+       vim git tig nkf manpages-ja manpages-ja-dev
+       # transmission-cli poppler-utils 
+       # mutt-patched mailutils \
+       # openssh-server openssh-client
+    #sudo update-alternatives --all
+    sudo apt-get clean
 fi

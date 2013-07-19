@@ -27,7 +27,6 @@ set fileformats=unix,dos,mac
 
 " indent
 set autoindent
-set smartindent
 set cindent
 set smarttab
 

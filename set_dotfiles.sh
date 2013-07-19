@@ -54,5 +54,11 @@ if [ -e /etc/debian_version ]; then
        # mutt-patched mailutils \
        # openssh-server openssh-client
     #sudo update-alternatives --all
+
+    # y-ppa-manager
+    sudo apt-get install -q -y software-properties-common
+    sudo add-apt-repository -y ppa:webupd8team/y-ppa-manager && sudo apt-get -qq update
+    sudo apt-get install -q -y y-ppa-manager
+    #
     sudo apt-get clean
 fi

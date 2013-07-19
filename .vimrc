@@ -36,6 +36,7 @@ set hlsearch
 
 au BufRead,BufNewFile *.md :set ft=markdown
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if or(&ft == '',&ft == 'conf') | :se ft=nginx | endif
+au BufNewFile *.py :0r ~/.vim/snippet/utf8.py | :echo "snippet read."
 
 " map
 let mapleader = ","

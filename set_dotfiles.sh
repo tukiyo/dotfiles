@@ -51,7 +51,7 @@ fi
 #-------------------------------------------------------------------------------
 if [ -e /etc/debian_version ]; then
     if [ ! "`dpkg -l | grep apt-fast`" ];then
-        sudo apt-get install aria2 libc-ares2
+        sudo apt-get install aria2 libc-ares2 pyton-vte
         sudo dpkg -i local/program/*.deb
     fi
     if [ ! "`dpkg -l | grep y-ppa-manager`" ];then

@@ -5,18 +5,19 @@ fi
 
 alias gitcommitamend='git commit --amend -v'
 alias gitcommit='git commit -v'
-alias view='vim -R'
+alias view='vimpager'
 
 if [ -e /etc/debian_version ]; then
-    alias apt-get='apt-fast'
+    alias ii='apt-fast install'
+    alias ac='apt-cache search'
     alias make='colormake'
     alias diff='colordiff'
     alias powertop="sudo $HOME/dotfiles/local/sbin/powertop"
-    alias aptcachesearch='apt-cache search'
-    alias aptgetinstall='apt-fast install'
     alias dpkgl='dpkg -l'
     alias dpkgL='dpkg -L'
     alias dpkgpurge='dpkg --purge'
+    ccopy(){ while (( $# )); do cp -av "${1}" "/tmp/ccopy.${1}"; shift; done; }
+    alias cpaste="ls -d /tmp/ccopy* | sed 's|[^\.]*.\.||' | xargs -I % mv -v /tmp/ccopy.% ./%"
 fi
 
 man() {

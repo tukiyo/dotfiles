@@ -54,20 +54,16 @@ if [ -e /etc/debian_version ]; then
         echo "[info] apt-get install"
         sudo apt-get -q install \
            ranger atool mediainfo highlight caca-utils w3m \
-           vim git tig nkf manpages-ja manpages-ja-dev
+           vim git tig nkf manpages-ja manpages-ja-dev acpi
            # transmission-cli poppler-utils 
            # mutt-patched mailutils \
            # openssh-server openssh-client
         #sudo update-alternatives --all
 
-        # y-ppa-manager
-        sudo apt-get install -q -y software-properties-common
-        sudo add-apt-repository -y ppa:webupd8team/y-ppa-manager && sudo apt-get -qq update
-        sudo apt-get install -q -y y-ppa-manager
+        ## y-ppa-manager
+        #sudo apt-get install -q -y software-properties-common
+        #sudo add-apt-repository -y ppa:webupd8team/y-ppa-manager && sudo apt-get -qq update
+        #sudo apt-get install -q -y y-ppa-manager
     fi
     sudo apt-get clean
-fi
-#-------------------------------------------------------------------------------
-if [ ! -e $HOME/local/bin/colorizer.sed ]; then
-    cp -p local/bin/colorizer.sed $HOME/local/bin/
 fi

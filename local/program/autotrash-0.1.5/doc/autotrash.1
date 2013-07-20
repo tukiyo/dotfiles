@@ -1,0 +1,77 @@
+.TH "AUTOTRASH" "1" 
+.SH "NAME" 
+autotrash \(em program to automatically purge old files from the FreeDesktop.org trash 
+.SH "SYNOPSIS" 
+.PP 
+\fBautotrash\fR [\fB-d \fIpurge_n_days_old\fR\fP]  
+.PP 
+\fBautotrash\fR [\fB\-\-delete \fInumber_of_megabytes_to_purge\fR\fP]  
+.PP 
+\fBautotrash\fR [\fB\-\-keep-free \fInumber_of_megabytes_to_free\fR\fP]  
+.SH "DESCRIPTION" 
+.PP 
+\fBautotrash\fR is a program that looks in a FreeDesktop.org Trash folder for information on it's contents and then purges a part of the trash depending on the options. 
+.PP 
+The most common option is \fB-d\fP, which will purge files that have been in the trash for more then a given number of days. 
+.PP 
+The option \fB\-\-delete\fP will remove at least the given number of megabytes from the trash, removing the oldest trash first. 
+.PP 
+Using \fB\-\-keep-free\fP will make sure at least the given number of megabytes of free space is available, by automatically setting \fB\-\-delete\fP to the right value. For example, to keep at least a 1GB of free space, removing files from the trash if needed, use \fBautotrash\fR \fB\-\-keep-free\fP 1024 . 
+.SH "OPTIONS" 
+.PP 
+This program follows the usual GNU command line syntax, 
+with long options starting with two dashes (`\-'). 
+.IP "\fB-h\fP \fB\-\-help\fP         " 10 
+Show a summary of options. 
+.IP "\fB-d \fIDAYS\fR\fP \fB\-\-days \fIDAYS\fR\fP         " 10 
+Purge files older than DAYS number of days. 
+.IP "\fB-T \fIPATH\fR\fP \fB\-\-trash-path \fIPATH\fR\fP         " 10 
+Use the given path as the location of the Trash directory, instead of the default: ~/.local/share/Trash . 
+.IP "\fB\-\-max-free \fIM\fR\fP         " 10 
+Only purge files if there is less than \fIM\fR megabytes of free space left at the trash location. As an example, if you set this to 1024, then autotrash will only start to work if there is less than 1GB of free space in the trash. Till that time, autotrash will just exit normally without scanning the Trash directory. If unsure, try running autotrash with \fB\-\-dry-run\fP and \fB\-\-verbose\fP to see the effect. 
+.IP "\fB\-\-delete \fIM\fR\fP         " 10 
+Purge at least \fIM\fR megabytes, deleting oldest trash addition first. It uses trash entries, NOT individual files. This means that if your oldest trashed item is a 1GB directory, and you request at least 10MB to be removed (M=10), autotrash will remove 1GB. If unsure, try running autotrash with both \fB\-\-dry-run\fP and \fB\-\-stat\fP to see the effect. 
+.IP "\fB\-\-min-free \fIM\fR\fP \fB\-\-keep-free \fIM\fR\fP         " 10 
+Make sure there is a minimum of \fIM\fR megabytes of free space. If there is less free space, set \fB\-\-delete\fP to the difference between \fIM\fR and the amount of free space. If unsure, try running autotrash with \fB\-\-dry-run\fP and \fB\-\-verbose\fP to see the effect. 
+.IP "\fB-D \fIREGEX\fR\fP \fB\-\-delete-first \fIREGEX\fR\fP         " 10 
+Purge any file which matches REGEX first, regardless of it's time-stamp. REGEX must be a valid regular expression. If this option is used multiple times, the files matching the first regular expression are deleted first, then the second etc. Example, delete any *.avi files first, then by age: \-\-delete-first '.*\\.avi' 
+.IP "\fB-v\fP \fB\-\-verbose\fP         " 10 
+Output information on what is happening and why. 
+.IP "\fB-q\fP \fB\-\-quiet\fP         " 10 
+Only output warnings. 
+.IP "\fB\-\-check\fP         " 10 
+Report .trashinfo files that point to a non-existing file. This will only happen with a broken Trashcan. It is left up to the user to actually do something with this information. These files will be removed as soon as the mentioned file would be removed by autotrash. 
+.IP "\fB\-\-dry-run\fP         " 10 
+Only list what would be done, but actually do nothing. 
+.IP "\fB\-\-stat\fP         " 10 
+Show the number, and total size of files involved. 
+.IP "\fB-V\fP \fB\-\-version\fP         " 10 
+Show the version of program. 
+.SH "EXAMPLES" 
+.PP 
+Examples of program use. 
+.IP "autotrash \-d 30" 10 
+Purge any file that has been in the trash for more then 30 days. 
+.IP "autotrash \-\-max-free 1024 \-d 30" 10 
+Only purge files from the trash if there is less than 1GB of space left on the trash filesystem. If so, only trash files that are older than 30 days. 
+.IP "autotrash \-\-min-free 2048" 10 
+Purge files from trash, oldest first, till there is at least 2GB of space on the trash filesystem. There is no restriction on how old trashed files are. 
+.IP "autotrash \-\-min-free 2048 \-D '.*\\\\.bak' \-D '.*\\\\.avi'" 10 
+Purge files from trash till there is at least 2GB of space on the trash filesystem. If we need to remove files, make sure we remove *.bak files first, then all *.avi files and after that the oldest to the newest. There is no restriction on how old trashed files can get. Please note that '.*\\.bak' and '.*\\.avi' are regular expressions and not glob patterns. Given that they are regular expressions, using \-D '.*\\.(png|gif|jpg|jpeg)' will match images with any of the given extensions. 
+.IP "autotrash \-\-max-free 4000 \-\-min-free 2048 \-d 30" 10 
+Start reading the trash if there is less than 4000MB of free space, then start keeping an eye on. At that point, remove files older than 30 days and if there is less than 2GB of free space after that remove even newer files. 
+.IP "@hourly /usr/bin/autotrash \-\-max-free 4000 \-\-min-free 2048 \-d 30" 10 
+Experienced users should consider adding autotrash as a crontab entry, using \fBcrontab \-e\fR and adding the line above. 
+.SH "AUTHOR" 
+.PP 
+This manual page was written by A. Bram Neijt bram@neijt.nl for 
+the \fBDebian\fP system (and may be used by others).  Permission is 
+granted to copy, distribute and/or modify this document under 
+the terms of the GNU General Public License, Version 3 or any 
+later version published by the Free Software Foundation. 
+ 
+.PP 
+On Debian systems, the complete text of the GNU General Public 
+License can be found in /usr/share/common-licenses/GPL. 
+ 
+.\" created by instant / docbook-to-man, Wed 26 Jan 2011, 20:28 

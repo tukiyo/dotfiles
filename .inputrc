@@ -1,0 +1,4 @@
+# single press of tab to completions
+set show-all-if-ambiguous on
+Control-o: " 2>&1 | colorizer.sed"
+Control-s: backward-delete-char

@@ -3,14 +3,37 @@ if [ -e "$HOME/dotfiles/local/program/liquidprompt/liquidprompt" ]; then
     source $HOME/dotfiles/local/program/liquidprompt/liquidprompt
 fi
 
-alias gitcommitamend='git commit --amend -v'
-alias gitcommit='git commit -v'
-alias view='vimpager'
+## ignore control-s
+stty stop undef
+
+## autocd
+shopt -s autocd
+
+## man command <Esc-h> or <Alt-h>
+bind '"\eh": "\C-a\eb\ed\C-y\e#man \C-y\C-m\C-p\C-p\C-a\C-d\C-e"'
+# ctrl+left/right arrows:
+bind '"\e\x5b\x31\x3b\x35\x44"':backward-word
+bind '"\e\x5b\x31\x3b\x35\x43"':forward-word
+# alt+b/f:
+bind '"\xe2"':'"\M-b"'
+bind '"\xe6"':'"\M-f"'
+# alt+'.':
+bind '"\xae"':yank-last-arg
+
+## history pgup,pgdn
+bind '"\e[5~": history-search-backward'
+bind '"\e[6~": history-search-forward'
+HISTTIMEFORMAT="[%y-%m-%d %T] "
+HISTIGNORE="&:ls:[bf]g:exit"
+HISTCONTROL="erasedups:ignoreboth" 
 
 if [ -e /etc/debian_version ]; then
     alias ii='apt-fast install'
     alias ac='apt-cache search'
-    alias mv='pv'
+    alias mv='mv -v'
+    alias cp='cp -vu'
+    alias rm='trash'
+    alias view='vimpager'
     alias make='colormake'
     alias diff='colordiff'
     alias powertop="sudo $HOME/dotfiles/local/sbin/powertop"
@@ -19,6 +42,24 @@ if [ -e /etc/debian_version ]; then
     alias dpkgpurge='dpkg --purge'
     ccopy(){ while (( $# )); do cp -av "${1}" "/tmp/ccopy.${1}"; shift; done; }
     alias cpaste="ls -d /tmp/ccopy* | sed 's|[^\.]*.\.||' | xargs -I % mv -v /tmp/ccopy.% ./%"
+    calendar(){ sed -n "/$(date +%m\\/%d\\\|%b\*\ %d)/p" $(find ~/.calendar /usr/share/calendar -maxdepth 1 -type f -name 'c*' 2>/dev/null); }
+    cow(){ $(shuf -n 1 -e cowsay cowthink) -$(shuf -n 1 -e b d g p s t w y) -f $(shuf -n 1 -e $(cowsay -l | tail -n +2)) -n; }
+    cl() {
+        if [ "$1" == "" ]; then
+            pwd;
+        elif [ "$1" == "-" ]; then
+            cd -
+        elif [ -d "$1" ]; then
+            cd "$1";
+        else
+            echo "bash: cl: '$1': Directory not found"
+        fi
+        ls -F
+    }
+    alias ...="cd ../.."
+    alias ....="cd ../../.."
+    alias .....="cd ../../../.."
+    alias du="gt5"
 fi
 
 man() {

@@ -52,14 +52,17 @@ fi
 if [ -e /etc/debian_version ]; then
     if [ ! "`dpkg -l | grep apt-fast`" ];then
         sudo apt-get install aria2 libc-ares2 pyton-vte
-        sudo dpkg -i local/program/*.deb
+        for i in local/deb/*.deb;
+        do
+            sudo dpkg -i 
+        done
     fi
     if [ ! "`dpkg -l | grep y-ppa-manager`" ];then
         echo "[info] apt-get install"
         sudo apt-fast -q install \
            ranger atool mediainfo highlight caca-utils w3m \
            vim git tig nkf manpages-ja manpages-ja-dev acpi \
-           pv
+           pv unp trash-cli gt5
            # transmission-cli poppler-utils 
            # mutt-patched mailutils \
            # openssh-server openssh-client

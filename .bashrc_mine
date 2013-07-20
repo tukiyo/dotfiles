@@ -8,8 +8,9 @@ alias gitcommit='git commit -v'
 alias view='vim -R'
 
 if [ -e /etc/debian_version ]; then
+    alias apt-get='apt-fast'
     alias aptcachesearch='apt-cache search'
-    alias aptgetinstall='apt-get install'
+    alias aptgetinstall='apt-fast install'
     alias dpkgl='dpkg -l'
     alias dpkgL='dpkg -L'
     alias dpkgpurge='dpkg --purge'

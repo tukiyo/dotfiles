@@ -50,9 +50,13 @@ fi
 
 #-------------------------------------------------------------------------------
 if [ -e /etc/debian_version ]; then
+    if [ ! "`dpkg -l | grep apt-fast`" ];then
+        sudo apt-get install aria2 libc-ares2
+        sudo dpkg -i local/program/apt*.deb
+    fi
     if [ ! "`dpkg -l | grep y-ppa-manager`" ];then
         echo "[info] apt-get install"
-        sudo apt-get -q install \
+        sudo apt-fast -q install \
            ranger atool mediainfo highlight caca-utils w3m \
            vim git tig nkf manpages-ja manpages-ja-dev acpi
            # transmission-cli poppler-utils 

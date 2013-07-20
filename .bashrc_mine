@@ -10,6 +10,7 @@ alias view='vimpager'
 if [ -e /etc/debian_version ]; then
     alias ii='apt-fast install'
     alias ac='apt-cache search'
+    alias mv='pv'
     alias make='colormake'
     alias diff='colordiff'
     alias powertop="sudo $HOME/dotfiles/local/sbin/powertop"

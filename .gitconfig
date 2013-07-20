@@ -46,6 +46,7 @@
     ram = "!f() { git rebase-and-merge $1 $2 ;}; f"
 # comit
     ad  = add
+    amend = commit -a -v --amend   # 直前のcommitを修正
     c   = commit -v
     ci  = commit -a -v          # modifiedなファイルを全てstageへ
     cam = commit -a -v --amend   # 直前のcommitを修正

@@ -11,6 +11,7 @@ if [ -e /etc/debian_version ]; then
     alias apt-get='apt-fast'
     alias make='colormake'
     alias diff='colordiff'
+    alias powertop="sudo $HOME/dotfiles/local/sbin/powertop"
     alias aptcachesearch='apt-cache search'
     alias aptgetinstall='apt-fast install'
     alias dpkgl='dpkg -l'

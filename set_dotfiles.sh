@@ -62,7 +62,8 @@ if [ -e /etc/debian_version ]; then
         sudo apt-fast -q install \
            ranger atool mediainfo highlight caca-utils w3m \
            vim git tig nkf manpages-ja manpages-ja-dev acpi \
-           pv unp trash-cli gt5
+           pv unp trash-cli gt5 \
+           iotop iftop powertop
            # transmission-cli poppler-utils 
            # mutt-patched mailutils \
            # openssh-server openssh-client

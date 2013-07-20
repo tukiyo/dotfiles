@@ -1,0 +1,9 @@
+!?(word)
+
+    This is similar to the last feature in that it searches the history for the word entered, but unlike !(word) this will find the word anywhere in the command, not just the beginning.
+
+    bash-history-bangquestion
+
+    Be careful with this one. You may end up running something other than what you expected. Don’t use this for potentially dangerous commands like “rm” or “fdisk”.
+
+

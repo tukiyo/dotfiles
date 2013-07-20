@@ -60,6 +60,7 @@ if [ -e /etc/debian_version ]; then
     alias ....="cd ../../.."
     alias .....="cd ../../../.."
     alias du="gt5"
+    alias netstat_detail="netstat -ntauple"
 fi
 
 man() {
@@ -75,4 +76,18 @@ man() {
 
 memory_use_top20() {
     ps alx  | awk '{printf ("%d\t%s\n", $8,$13)}' | sort -nr | head -20
+}
+
+scan_open_ports() {
+    HOST=127.0.0.1;
+    if [ "$1" != ""  ]; then
+        HOST=$1
+    fi
+    for((port=1; port<=65535; ++port));
+    do
+        echo -en "$port ";
+        if echo -en "open $HOST $port\nlogout\quit" | telnet 2>/dev/null | grep 'Connected to' > /dev/null;
+            then echo -en "\n\nport $port/tcp is open\n\n";
+        fi;
+    done | grep open
 }

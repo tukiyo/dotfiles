@@ -40,3 +40,7 @@
 
 * http://downloads.sourceforge.net/project/monolingual/monolingual/1.5.7/Monolingual-1.5.7.dmg?r=http%3A%2F%2Fmonolingual.sourceforge.net%2F&ts=1374416843&use_mirror=nchc
 
+
+## sudoers
+
+* admin    ALL = NOPASSWD: ALL

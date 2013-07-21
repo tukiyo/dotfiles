@@ -1,4 +1,7 @@
 # single press of tab to completions
 set show-all-if-ambiguous on
-Control-o: " 2>&1 | colorizer.sed"
 Control-s: backward-delete-char
+Control-o: " 2>&1 | colorizer.sed"
+"\eOP": "howdoi -c -n 5 python "
+"\eOQ": "howdoi -c -n 5 php "
+"\eOR": "howdoi -c -n 5 bash "

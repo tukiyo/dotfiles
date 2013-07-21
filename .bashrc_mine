@@ -32,6 +32,7 @@ HISTIGNORE="&:pwd:ls:[bf]g:exit"
 HISTCONTROL="erasedups:ignoreboth" 
 
 if [ -e /etc/debian_version ]; then
+    alias howdoi='howdoi -n 5 -c'
     alias ii='apt-fast install'
     alias ac='apt-cache search'
     alias mv='mv -v'

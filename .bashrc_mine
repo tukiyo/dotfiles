@@ -1,10 +1,14 @@
-PATH=$HOME/dotfiles/local/bin:$HOME/local/bin:$PATH
+PATH=$HOME/dotfiles/local/bin:$HOME/local/bin:.:$PATH
+CDPATH=.:~:~/dotfiles:~/dotfiles/local/:~/dotfiles/local/program:/etc:/var
 if [ -e "$HOME/dotfiles/local/program/liquidprompt/liquidprompt" ]; then
     source $HOME/dotfiles/local/program/liquidprompt/liquidprompt
 fi
 
 ## ignore control-s
 stty stop undef
+
+## automatically correct mistyped directory names on cd
+shopt -s cdspell
 
 ## autocd
 shopt -s autocd
@@ -24,7 +28,7 @@ bind '"\xae"':yank-last-arg
 bind '"\e[5~": history-search-backward'
 bind '"\e[6~": history-search-forward'
 HISTTIMEFORMAT="[%y-%m-%d %T] "
-HISTIGNORE="&:ls:[bf]g:exit"
+HISTIGNORE="&:pwd:ls:[bf]g:exit"
 HISTCONTROL="erasedups:ignoreboth" 
 
 if [ -e /etc/debian_version ]; then
@@ -91,3 +95,5 @@ scan_open_ports() {
         fi;
     done | grep open
 }
+
+function mkdircd () { mkdir -p "$@" && eval cd "\"\$$#\""; }

@@ -1,0 +1,13 @@
+alias ac='brew search'
+alias ii='brew install'
+alias r='ranger'
+alias howdoi='howdoi -n5 --color'
+
+CDPATH=$HOME:$HOME/dotfiles:$HOME/local:$HOME/local/etc:/etc
+
+beer() {
+    echo -e "\xF0\x9f\x8d\xba"
+}
+s0() {
+    osascript -e 'tell application "System Events" to sleep'
+}

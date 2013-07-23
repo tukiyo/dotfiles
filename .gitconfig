@@ -1,11 +1,12 @@
 [user]
-    name = tukiyo3
-    email = tukiyo3@gmail.com
+	name = tukiyo3
+	email = tukiyo3@gmail.com
 [credential]
     helper = cache --timeout=360000
 [core]
 # UTF8-MAC問題対応
 	precomposeunicode = true
+	excludesfile = ~/.gitignore_global
 [push]
     default = simple
 [color]
@@ -166,3 +167,9 @@
     generic = G move-last-line
     generic = ^F move-page-down
     generic = ^B move-page-up
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

@@ -4,6 +4,7 @@ brew install \
   bash-completion \
   brew-pip \
   byobu \
+  ctags \
   colordiff \
   colormake \
   colortail \

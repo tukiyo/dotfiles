@@ -1,13 +1,30 @@
+PATH=$HOME/local/bin:$PATH
+EDITOR="/usr/bin/vim"
 alias ac='brew search'
 alias ii='brew install'
+alias diff='colordiff'
+alias make='colormake'
 alias r='ranger'
 alias howdoi='howdoi -n5 --color'
+alias pycharm="open $HOME/Applications/PyCharm.app"
 
 CDPATH=$HOME:$HOME/dotfiles:$HOME/local:$HOME/local/etc:/etc
+
 
 beer() {
     echo -e "\xF0\x9f\x8d\xba"
 }
 s0() {
     osascript -e 'tell application "System Events" to sleep'
+}
+
+man() {
+    env LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+    LESS_TERMCAP_md=$(printf "\e[1;31m") \
+    LESS_TERMCAP_me=$(printf "\e[0m") \
+    LESS_TERMCAP_se=$(printf "\e[0m") \
+    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+    LESS_TERMCAP_ue=$(printf "\e[0m") \
+    LESS_TERMCAP_us=$(printf "\e[1;32m") \
+    man "$@"
 }

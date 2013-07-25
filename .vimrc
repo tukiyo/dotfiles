@@ -25,11 +25,6 @@ set fileformats=unix,dos,mac
 "set foldlevel=2
 "set foldmethod=indent
 
-" indent
-set autoindent
-set cindent
-set smarttab
-
 " search
 set incsearch
 set hlsearch
@@ -55,6 +50,12 @@ map <leader>. :e .<cr>
 map <leader>S :mksession! ~/local/Session.vim<cr>
 map <leader>L :so ~/local/Session.vim<cr>
 
+" Trinity
+if has('mac') 
+    let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
+endif
+let NERDTreeShowHidden=1
+
 let MyGrep_ExcludeReg = '[~#]$\|\.bak$\|\.o$\|\.obj$\|\.exe$\|[/\\]tags$\|^tags$'
 
 " QuickRun
@@ -63,9 +64,14 @@ let g:quickrun_config = {
 \       "hook/inu/enable" : 1,
 \       "hook/inu/wait" : 20,
 \       "outputter/buffer/split" : ":botright 8sp",
-\       "outputter/buffer/append" : 1,
+\       "outputter/buffer/append" : 0,
 \       "runner/vimproc/updatetime" : 40,
 \       "runner" : "vimproc",
 \   }
 \}
 "map <leader>r :QuickRun<cr>
+
+" indent
+set autoindent
+set smarttab
+

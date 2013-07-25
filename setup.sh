@@ -28,3 +28,6 @@ do
     ln -s `pwd`/$file $HOME/$file
     echo
 done
+
+## .DS_Store
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true

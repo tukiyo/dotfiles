@@ -25,11 +25,6 @@ set fileformats=unix,dos,mac
 "set foldlevel=2
 "set foldmethod=indent
 
-" indent
-set autoindent
-set cindent
-set smarttab
-
 " search
 set incsearch
 set hlsearch
@@ -69,3 +64,8 @@ let g:quickrun_config = {
 \   }
 \}
 "map <leader>r :QuickRun<cr>
+
+" indent
+set autoindent
+set smarttab
+
